@@ -1,0 +1,33 @@
+homeassistant:
+  customize: !include customize.yaml
+  packages:
+    zigbee2mqtt: !include packages/zigbee2mqtt.yaml
+    orangepipc: !include packages/orangepipc.yaml
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+
+mobile_app:
+discovery:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+recorder:
+  purge_keep_days: 8
+  db_url: 'sqlite:///:memory:'
+
+#logger:
+#  default: warning
+#  logs:
+#    homeassistant.components.mqtt: debug

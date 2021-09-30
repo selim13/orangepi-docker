@@ -1,0 +1,32 @@
+sensor:
+  - platform: mqtt
+    state_topic: 'orangepipc/cpu_temp'
+    name: 'Orange Pi PC CPU temperature'
+    unit_of_measurement: °C
+  - platform: mqtt
+    state_topic: 'orangepipc/ram_used_percent'
+    name: 'Orange Pi PC RAM used'
+    unit_of_measurement: '%'
+  - platform: mqtt
+    state_topic: 'orangepipc/cpu_load'
+    name: 'Orange Pi PC CPU Load'
+    unit_of_measurement: '%'
+  - platform: mqtt
+    state_topic: 'orangepipc/uptime'
+    name: 'Orange Pi PC uptime'
+  - platform: mqtt
+    state_topic: 'orangepipc/mmc_uptime_read'
+    name: 'Orange Pi PC MMC uptime read'
+    unit_of_measurement: MiB
+  - platform: mqtt
+    state_topic: 'orangepipc/mmc_uptime_read_io_merged'
+    name: 'Orange Pi PC MMC uptime read io merged'
+    unit_of_measurement: '%'
+  - platform: mqtt
+    state_topic: 'orangepipc/mmc_uptime_write'
+    name: 'Orange Pi PC MMC uptime write'
+    unit_of_measurement: MiB
+  - platform: mqtt
+    state_topic: 'orangepipc/mmc_uptime_write_io_merged'
+    name: 'Orange Pi PC MMC uptime write io merged'
+    unit_of_measurement: '%'

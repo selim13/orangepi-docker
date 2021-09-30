@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  mosquitto:
+    container_name: mosquitto
+    image: eclipse-mosquitto:1.6
+    restart: unless-stopped
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/data:/mosquitto/data
+    ports:
+      - 1883:1883
+      - 9001:9001
+
+  zigbee2mqtt:
+    container_name: zigbee2mqtt
+    image: koenkk/zigbee2mqtt
+    volumes:
+      - ./zigbee2mqtt:/app/data
+      - /run/udev:/run/udev:ro
+    devices:
+      - /dev/ttyS3
+    #  - /dev/ttyACM0
+    restart: unless-stopped
+    privileged: true
+    ports:
+      - 8000:8000
+
+  homeassistant:
+    container_name: homeassistant
+    image: homeassistant/home-assistant:stable
+    volumes:
+      - ./homeassistant:/config
+    environment:
+      - TZ=Europe/Moscow
+    restart: unless-stopped
+    ports:
+      - 8123:8123  

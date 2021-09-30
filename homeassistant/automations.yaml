@@ -1,0 +1,203 @@
+- id: '1585426696963'
+  alias: Tradfri motion at day
+  description: ''
+  trigger:
+  - device_id: 9afcd93186e240848851cb613e60edad
+    domain: binary_sensor
+    entity_id: binary_sensor.0x00158d0004038f22_occupancy
+    platform: device
+    type: motion
+  condition:
+  - after: '6:00'
+    before: 00:00
+    condition: time
+  action:
+  - brightness_pct: 85
+    device_id: 8f38c783315749069b095c41602141cc
+    domain: light
+    entity_id: light.0xccccccfffeacf403_light
+    type: turn_on
+  mode: single
+- id: '1585426757346'
+  alias: Tradfri no motion
+  description: ''
+  trigger:
+  - device_id: 9afcd93186e240848851cb613e60edad
+    domain: binary_sensor
+    entity_id: binary_sensor.0x00158d0004038f22_occupancy
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+    platform: device
+    type: no_motion
+  condition: []
+  action:
+  - device_id: 8f38c783315749069b095c41602141cc
+    domain: light
+    entity_id: light.0xccccccfffeacf403_light
+    type: turn_off
+- id: '1585483239782'
+  alias: Tradfri motion at night
+  description: ''
+  trigger:
+  - device_id: 9afcd93186e240848851cb613e60edad
+    domain: binary_sensor
+    entity_id: binary_sensor.0x00158d0004038f22_occupancy
+    platform: device
+    type: motion
+  condition:
+  - after: 00:00
+    before: 06:00
+    condition: time
+  action:
+  - brightness_pct: 28
+    device_id: 8f38c783315749069b095c41602141cc
+    domain: light
+    entity_id: light.0xccccccfffeacf403_light
+    type: turn_on
+- id: '1595360246730'
+  alias: Включить теплый пол
+  description: ''
+  trigger:
+  - at: 06:00:00
+    platform: time
+  condition: []
+  action:
+  - type: turn_on
+    device_id: a364d9f53eb44aa39e8a1ab9be1c9162
+    entity_id: switch.0x00124b0009fe21c8_switch
+    domain: switch
+  mode: single
+- id: '1595360304959'
+  alias: Выключить теплый пол
+  description: ''
+  trigger:
+  - at: 01:00:00
+    platform: time
+  condition: []
+  action:
+  - type: turn_off
+    device_id: a364d9f53eb44aa39e8a1ab9be1c9162
+    entity_id: switch.0x00124b0009fe21c8_switch
+    domain: switch
+  mode: single
+- id: '1595401154597'
+  alias: Включить свет в туалете когда открыта дверь днем
+  description: ''
+  trigger:
+  - device_id: b4dae643b99c454597379abace206439
+    domain: binary_sensor
+    entity_id: binary_sensor.0x00158d0000b484ba_contact
+    platform: device
+    type: opened
+  condition:
+  - after: 06:00
+    before: 00:00
+    condition: time
+  action:
+  - brightness_pct: 85
+    device_id: 8f38c783315749069b095c41602141cc
+    domain: light
+    entity_id: light.0xccccccfffeacf403_light
+    type: turn_on
+  mode: single
+- id: '1595401273532'
+  alias: ' Включить свет в туалете когда открыта дверь ночью'
+  description: ''
+  trigger:
+  - device_id: b4dae643b99c454597379abace206439
+    domain: binary_sensor
+    entity_id: binary_sensor.0x00158d0000b484ba_contact
+    platform: device
+    type: opened
+  condition:
+  - after: 00:00
+    before: 06:00
+    condition: time
+  action:
+  - brightness_pct: 28
+    device_id: 8f38c783315749069b095c41602141cc
+    domain: light
+    entity_id: light.0xccccccfffeacf403_light
+    type: turn_on
+- id: '1603052529074'
+  alias: Включить настольную лампу утром в выходные
+  description: ''
+  trigger:
+  - at: 08:30
+    platform: time
+  condition:
+  - condition: time
+    weekday:
+    - sat
+    - sun
+  action:
+  - brightness_pct: 30
+    device_id: 7c2c066aa9054002b31e7c01addc70ea
+    domain: light
+    entity_id: light.0x00158d00041138ba_light
+    type: turn_on
+  mode: single
+- id: '1611494581695'
+  alias: Включить настольную лампу утром в буднии
+  description: ''
+  trigger:
+  - at: 07:30
+    platform: time
+  condition:
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  action:
+  - brightness_pct: 30
+    device_id: 7c2c066aa9054002b31e7c01addc70ea
+    domain: light
+    entity_id: light.0x00158d00041138ba_light
+    type: turn_on
+  mode: single
+- id: '1617459787658'
+  alias: Включить/выключить настольную лапму кнопкой
+  description: ''
+  trigger:
+  - platform: device
+    domain: mqtt
+    device_id: 102b96cc12cf8cf3acd74976ed031757
+    type: action
+    subtype: single
+    discovery_id: 0x00158d0005476a72 action_single
+  condition: []
+  action:
+  - type: toggle
+    device_id: 7c2c066aa9054002b31e7c01addc70ea
+    entity_id: light.0x00158d00041138ba_light
+    domain: light
+  mode: single
+- id: '1617460005375'
+  alias: Выставить яркость настолькой лампы на максимум кнопкой
+  description: ''
+  trigger:
+  - platform: device
+    domain: mqtt
+    device_id: 102b96cc12cf8cf3acd74976ed031757
+    type: click
+    subtype: double
+    discovery_id: 0x00158d0005476a72 click_double
+  - platform: device
+    domain: mqtt
+    device_id: 102b96cc12cf8cf3acd74976ed031757
+    type: action
+    subtype: hold
+    discovery_id: 0x00158d0005476a72 action_hold
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 7c2c066aa9054002b31e7c01addc70ea
+    entity_id: light.0x00158d00041138ba_light
+    domain: light
+    brightness_pct: 90
+  mode: single

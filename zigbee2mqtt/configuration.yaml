@@ -1,0 +1,32 @@
+homeassistant: true
+permit_join: false
+mqtt:
+  base_topic: zigbee2mqtt
+  server: 'mqtt://mosquitto'
+serial:
+  port: /dev/ttyS3
+advanced:
+  channel: 25
+  log_output:
+    - console
+frontend:
+  port: 8000
+experimental:
+  new_api: true
+devices:
+  '0x00158d00041138ba':
+    friendly_name: Aqara-lightbulb
+  '0x00158d0004038f22':
+    friendly_name: Aqara-occupancy
+  '0x00124b001f3c00cf':
+    friendly_name: CC2530-router
+  '0xccccccfffeacf403':
+    friendly_name: IKEA-LED1623G12
+  '0x00158d0000b484ba':
+    friendly_name: MCLH-04
+  '0x00124b0009fe21c8':
+    friendly_name: MCLH-03
+  '0x00158d000426008b':
+    friendly_name: '0x00158d000426008b'
+  '0x00158d0005476a72':
+    friendly_name: '0x00158d0005476a72'

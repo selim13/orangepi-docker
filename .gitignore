@@ -1,0 +1,8 @@
+homeassistant/.*
+homeassistant/*.db
+homeassistant/*.log
+homeassistant/secrets.yaml
+zigbee2mqtt/coordinator_backup.json
+zigbee2mqtt/database.db
+zigbee2mqtt/state.json
+mosquitto/data
